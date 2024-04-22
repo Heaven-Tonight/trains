@@ -1,38 +1,129 @@
-.App {
+:root {
+  --main-bg-color: #E8F2F4;
+  --header-text-color: #7F8485;
+  --table-bg-color: #FFF;
+  --invalid-cell-border-color: rgba(255, 0, 0, 0.4);
+
+  --trains-table-width: 35%;
+  --characteristics-table-width: 65%;
+
+  --border-radius: 10px;
+}
+
+body {
+  background: var(--main-bg-color);
+}
+
+.container {
+  margin: 20px;
+  padding: 5px;
+}
+
+main {
+  width: 100%;
+  display: flex;
+  gap: 50px;
+}
+
+.trains-list-table {
+  background: var(--table-bg-color);
+  border-bottom-left-radius: var(--border-radius);
+  border-bottom-right-radius: var(--border-radius);
+  width: var(--trains-table-width);
+  padding: 10px;
+  border-spacing: 0;
+}
+
+ th {
+  padding: 10px;
+  text-align: left;
+  background: var(--main-bg-color);;
+  color: var(--header-text-color);
+}
+
+ th:first-child {
+  border-top-left-radius: var(--border-radius);
+  border-bottom-left-radius: var(--border-radius);
+}
+
+th:last-child {
+  border-top-right-radius: var(--border-radius);
+  border-bottom-right-radius: var(--border-radius);
+}
+
+.trains-list-table td {
+  padding: 10px;
+  border-bottom: 3px solid var(--main-bg-color);
+  text-align: left;
+  cursor: pointer;
+}
+
+.table-caption {
+  border-top-right-radius: var(--border-radius);
+  border-top-left-radius: var(--border-radius);
+  background: var(--table-bg-color);
+  text-align: left;
+  padding-top: 15px;
+  padding-left: 20px;
+  font-weight: bold;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+.train-details-table {
+  width: var(--characteristics-table-width);
+  background: var(--table-bg-color);
+  border-spacing: 0;
+  padding: 10px;
+  border-bottom-left-radius: var(--border-radius);
+  border-bottom-right-radius: var(--border-radius);
+}
+
+.train-details-table caption:nth-child(2) {
+  background: var(--table-bg-color);
+  text-align: left;
+  font-weight: bold;
+  padding-top: 15px;
+  padding-left: 20px;
+}
+
+.train-details-table th {
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
+
+.train-details-table td {
+  padding: 10px;
+  border-bottom: 3px solid var(--main-bg-color);
+  text-align: center;
+}
+
+.train-details-table td input {
+  text-align: center;
+  border: none;
+  padding: 7px;
+}
+
+button {
+  padding: 7px;
+  margin-top: 15px;
+  width: calc(var(--characteristics-table-width) / 2);
+  align-self: center;
+}
+
+.invalid-cell {
+  border: 2px solid var(--invalid-cell-border-color) !important;
+}
+
+.disabled {
+  opacity: 0.5;
   pointer-events: none;
+  cursor: not-allowed;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
 
-.App-link {
-  color: #61dafb;
-}
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
