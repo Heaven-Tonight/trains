@@ -65,6 +65,11 @@ const TrainCharacteristicTable: React.FC<TrainCharacteristicTableProps> = ({ sel
             payload: trainDetails,
         });
 
+        const input = document.activeElement as HTMLInputElement;
+        if (input) {
+            input.blur();
+        }
+
         const listSortedBySpeed: Characteristic[] = [...trainDetails]
             .sort((a, b) => a.speed - b.speed);
         console.log(`Список скоростных ограничений Поезда №${selectedTrainId}`, listSortedBySpeed);
@@ -86,7 +91,7 @@ const TrainCharacteristicTable: React.FC<TrainCharacteristicTableProps> = ({ sel
     return (
         <div className="train-details-table-wrapper">
             {trainDetails.length > 0 && (
-                <form onSubmit={handleSubmit}>
+                <form noValidate onSubmit={handleSubmit}>
                     <table className="train-details-table">
                         <caption className="table-caption">Характеристики</caption>
                         <caption>{selectedTrainId !== null && trains[selectedTrainId].name}</caption>
