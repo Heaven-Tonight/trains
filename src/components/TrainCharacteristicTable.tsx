@@ -27,7 +27,7 @@ const isValidNumber = (columnName: string, value: number)=> {
 
 const TrainCharacteristicTable: React.FC<TrainCharacteristicTableProps> = ({ selectedTrainId }: TrainCharacteristicTableProps) => {
     const [trainDetails, setTrainDetails] = useState<Characteristic[]>([]);
-    const [isValidTableState, setIsValidTableState] = useState(false);
+    const [isValidTableState, setIsValidTableState] = useState(true);
     const [invalidCells, setInvalidCells] = useState<{ [key: string]: boolean[] }>({
         engineAmperage: [],
         speed: [],
@@ -44,7 +44,8 @@ const TrainCharacteristicTable: React.FC<TrainCharacteristicTableProps> = ({ sel
 
     const handleInputChange = (index: number, key: keyof Characteristic, value: string) => {
         const updatedDetails: Characteristic[] = [...trainDetails];
-        updatedDetails[index] = { ...updatedDetails[index], [key]: Number(value) };
+        const newValue = value.replace(/^0+(?=\d)/, '') || 0;
+        updatedDetails[index] = { ...updatedDetails[index], [key]: newValue };
         setTrainDetails(updatedDetails);
 
         const inputNumberIsValid = isValidNumber(key, Number(value));
@@ -77,7 +78,6 @@ const TrainCharacteristicTable: React.FC<TrainCharacteristicTableProps> = ({ sel
 
     useEffect(() => {
         const initialTrainDetailsState = selectedTrainId !== null ? trains[selectedTrainId].characteristics : [];
-        setIsValidTableState(false);
         setTrainDetails(initialTrainDetailsState);
         setInvalidCells({
             engineAmperage: Array(initialTrainDetailsState.length).fill(false),
